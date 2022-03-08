@@ -19,7 +19,7 @@ const addingNewbook = (req, res) => {
   };
   const getAllBooks = (req, res) => {
     booksModel
-      .find({})
+      .find({isdel: false})
       .then((result) => {
         res.send(result);
       })
@@ -30,7 +30,7 @@ const addingNewbook = (req, res) => {
   const getBooks = (req, res) => {
     const { title } = req.body;
     booksModel
-    .findOne({ title }).exec()
+    .findOne({ title },{isdel: true}).exec()
       .then((result) => {
         res.send(result);
       })
@@ -49,11 +49,43 @@ const addingNewbook = (req, res) => {
         res.send(err);
       });
   };
+  const updateBooktitle = (req, res) => {
+    const { id } = req.params;
+    const { title } = req.body;
+    console.log(id);
+    postModel
+      .findByIdAndUpdate(id,{$set: { title }}, { new: true })
+      .exec()
+      .then((result) => {
+        console.log(result);
+        res.status(200).json(result);
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  };
+  const deletebook = (req, res) => {
+    const { id } = req.params;
+  
+    console.log(id);
+    ArthersModel
+      .findByIdAndUpdate(id, { isdel: true }, { new: true })
+      .exec()
+      .then((result) => {
+        console.log(result);
+        res.status(200).json(result);
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  };
 
   module.exports = {
-    addingNewarther,
+    addingNewbook,
     getAllBooks,
-    getArthers,
-    getArthersbyid
+    getBooks,
+    getbooksbyid,
+    deletebook,
+    updateBooktitle,
   };
   

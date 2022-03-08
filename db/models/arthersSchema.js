@@ -8,6 +8,8 @@ const arthersSchema = new mongoose.Schema({
    image: {type: String,required: true, message: "Author image should be provided"},
    gender : { type: String},
  books : [{type: mongoose.Schema.Types.ObjectId, ref: "booksSchema"}],
+ isdel: { type: Boolean, default: false},
+
 
   
 });
