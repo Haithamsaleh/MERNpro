@@ -22,7 +22,6 @@ const addingNewarther = (req, res) => {
   const getAllArthers = (req, res) => {
     ArthersModel
       .find({isdel: false })
-      .populate('image title')
       .then((result) => {
         res.send(result);
       })
@@ -42,7 +41,7 @@ const addingNewarther = (req, res) => {
       });
   };
   const getArthersbyid = (req, res) => {
-    const { id } = req.body;
+    const { id } = req.params;
     ArthersModel
     .findById(id).exec()
         .then((result) => {
@@ -71,7 +70,7 @@ const addingNewarther = (req, res) => {
     const { id } = req.params;
     const { name } = req.body;
     console.log(id);
-    postModel
+    ArthersModel
       .findByIdAndUpdate(id,{$set: { name }}, { new: true })
       .exec()
       .then((result) => {
@@ -82,8 +81,22 @@ const addingNewarther = (req, res) => {
         res.status(400).json(err);
       });
   };
-  const Artherbook =
   
+  const hdeletearther = (req, res) => {
+    const { id } = req.params;
+  
+    console.log(id);
+    ArthersModel
+      .findByIdAndDelete(id)
+      .exec()
+      .then((result) => {
+        console.log(result);
+        res.status(200).json(result);
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  };
 
   module.exports = {
     addingNewarther,
@@ -92,5 +105,6 @@ const addingNewarther = (req, res) => {
     getArthersbyid,
     deletedarther,
     updateArthername,
+    hdeletearther,
   };
   

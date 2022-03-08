@@ -4,19 +4,23 @@ const { addingNewbook,
     getBooks,
     getbooksbyid,
     deletebook,
-    updateBooktitle,} = require("./../controllers/books")
+    updateBooktitle,
+    hdeletebook,
+} = require("./../controllers/books")
 
 const booksRouter = express.Router()
 
-booksRouter.post("/addingArther", addingNewbook);
-booksRouter.get("/Arthers", getAllBooks);
+booksRouter.post("/addbook", addingNewbook);
+booksRouter.get("/Books", getAllBooks);
 //get one 
-booksRouter.get("/:Arther", getBooks);
-booksRouter.get("/Arthers/:id", getbooksbyid);
-booksRouter.put("/Arthers/updatename/:id" ,updateBooktitle);
+booksRouter.get("/book", getBooks);
+booksRouter.get("/book/:id", getbooksbyid);
+booksRouter.put("/book/updatetitle/:id" ,updateBooktitle);
 
 //soft del
-booksRouter.delete("/Arthers/delete/:id", deletebook);
+booksRouter.delete("/book/delete/:id", deletebook);
+//hard del
+booksRouter.delete("/book/del/:id", hdeletebook);
 
 
 

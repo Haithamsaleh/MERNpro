@@ -39,7 +39,7 @@ const addingNewbook = (req, res) => {
       });
   };
   const getbooksbyid = (req, res) => {
-    const { id } = req.body;
+    const { id } = req.params;
     booksModel
     .findById(id).exec()
         .then((result) => {
@@ -53,7 +53,7 @@ const addingNewbook = (req, res) => {
     const { id } = req.params;
     const { title } = req.body;
     console.log(id);
-    postModel
+    booksModel
       .findByIdAndUpdate(id,{$set: { title }}, { new: true })
       .exec()
       .then((result) => {
@@ -68,8 +68,24 @@ const addingNewbook = (req, res) => {
     const { id } = req.params;
   
     console.log(id);
-    ArthersModel
+    booksModel
       .findByIdAndUpdate(id, { isdel: true }, { new: true })
+      .exec()
+      .then((result) => {
+        console.log(result);
+        res.status(200).json(result);
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  };
+
+  const hdeletebook = (req, res) => {
+    const { id } = req.params;
+  
+    console.log(id);
+    booksModel
+      .findByIdAndDelete(id)
       .exec()
       .then((result) => {
         console.log(result);
@@ -87,5 +103,6 @@ const addingNewbook = (req, res) => {
     getbooksbyid,
     deletebook,
     updateBooktitle,
+    hdeletebook
   };
   
