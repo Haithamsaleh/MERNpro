@@ -7,7 +7,7 @@ const arthersSchema = new mongoose.Schema({
    nationality :{ type: String,required: true, message: "Author nationality should be provided" },
    image: {type: String,required: true, message: "Author image should be provided"},
    gender : { type: String},
- books : [{type: mongoose.Schema.Types.ObjectId, ref: "Books"}],
+ books : [{type: mongoose.Schema.Types.ObjectId, ref: "booksSchema"}],
 
   
 });
