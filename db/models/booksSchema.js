@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
 const booksSchema = new mongoose.Schema({
-  title : { type: String, message:"Book title should be provided" },
-  pages: { type: Number, message:"Book pages should be provided"},
+  title : { type: String, required: true, message:"Book title should be provided" },
+  pages: { type: Number,required: true, message:"Book pages should be provided"},
   price: { type: Number, default:0 },
-   image :{type: String, message:"Book image should be provided"},
+   image :{type: String,required: true, message:"Book image should be provided"},
   
   });
 
