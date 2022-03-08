@@ -64,6 +64,55 @@ const addingNewbook = (req, res) => {
         res.status(400).json(err);
       });
   };
+
+  const updateBookpages = (req, res) => {
+    const { id } = req.params;
+    const { pages } = req.body;
+    console.log(id);
+    booksModel
+      .findByIdAndUpdate(id,{$set: { pages }}, { new: true })
+      .exec()
+      .then((result) => {
+        console.log(result);
+        res.status(200).json(result);
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  };
+
+  const updateBookprice = (req, res) => {
+    const { id } = req.params;
+    const { price } = req.body;
+    console.log(id);
+    booksModel
+      .findByIdAndUpdate(id,{$set: { price }}, { new: true })
+      .exec()
+      .then((result) => {
+        console.log(result);
+        res.status(200).json(result);
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  };
+
+  const updateBookimage = (req, res) => {
+    const { id } = req.params;
+    const { image } = req.body;
+    console.log(id);
+    booksModel
+      .findByIdAndUpdate(id,{$set: { image }}, { new: true })
+      .exec()
+      .then((result) => {
+        console.log(result);
+        res.status(200).json(result);
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  };
+
   const deletebook = (req, res) => {
     const { id } = req.params;
   
@@ -103,6 +152,9 @@ const addingNewbook = (req, res) => {
     getbooksbyid,
     deletebook,
     updateBooktitle,
-    hdeletebook
+    hdeletebook,
+    updateBookpages,
+    updateBookprice,
+    updateBookimage,
   };
   

@@ -81,6 +81,39 @@ const addingNewarther = (req, res) => {
         res.status(400).json(err);
       });
   };
+
+  const updateArtherAge = (req, res) => {
+    const { id } = req.params;
+    const { age } = req.body;
+    console.log(id);
+    ArthersModel
+      .findByIdAndUpdate(id,{$set: { age }}, { new: true })
+      .exec()
+      .then((result) => {
+        console.log(result);
+        res.status(200).json(result);
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  };
+  const updateArtherImage = (req, res) => {
+    const { id } = req.params;
+    const { image } = req.body;
+    console.log(id);
+    ArthersModel
+      .findByIdAndUpdate(id,{$set: { image }}, { new: true })
+      .exec()
+      .then((result) => {
+        console.log(result);
+        res.status(200).json(result);
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  };
+
+
   
   const hdeletearther = (req, res) => {
     const { id } = req.params;
@@ -106,5 +139,7 @@ const addingNewarther = (req, res) => {
     deletedarther,
     updateArthername,
     hdeletearther,
+    updateArtherAge,
+    updateArtherImage,
   };
   
